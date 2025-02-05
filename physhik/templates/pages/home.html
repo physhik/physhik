@@ -1,80 +1,101 @@
 {% extends "base.html" %}
+
 {% load static humanize i18n %}
-<title>{% block title %}Home | PHYSHIK Blog{% endblock title %}</title>
+
+<title>
+  {% block title %}
+    Home | PHYSHIK Blog
+  {% endblock title %}
+</title>
 {% block content %}
-<header class="container mt-4">
+  <header class="container mt-4">
     <div class="jumbotron text-center">
-    <h1 class="display-6">Hey, I'm Namshik!</h1>
-    <img src="{% static 'images/cole-welcome.png' %}" class="mx-auto py-3 img-fluid w-25" alt="...">
-    <p class="lead">Welcome to my blog!!!</p> 
-
-    <p class="lead">This blog application is built using <strong>Cookiecutter-Django</strong>, providing a robust and scalable architecture.</p> 
-        <p class="lead"> Here are the key features of the deployed web app:</p>
-
-    
+      <h1 class="display-6">Hey, I'm Namshik!</h1>
+      <img src="{% static 'images/cole-welcome.png' %}"
+           class="mx-auto py-3 img-fluid w-25"
+           alt="..." />
+      <p class="lead">Welcome to my blog!!!</p>
+      <p class="lead">
+        This blog application is built using <strong>Cookiecutter-Django</strong>, providing a robust and scalable architecture.
+      </p>
+      <p class="lead">Here are the key features of the deployed web app:</p>
     </div>
     <div class="container mt-2">
-        <div class="jumbotron p-4 bg-white">
-            <div class="mx-auto" style="width : 600px;">
-
-            <br>
-            <div class="ms-4">
-
-            <p class="lead">⚡ <strong>Django</strong> powers the backend API.</p>
-            <p class="lead">🤳 <strong>Webpack</strong> and <strong>Bootstrap</strong> handle the frontend.</p>  
-            <p class="lead">💾 <strong>PostgreSQL</strong> serves as the SQL database.</p>
-            <p class="lead">🐋 <strong>Docker Compose</strong> streamlines both development and production.</p>
-            <p class="lead">📞 <strong>Nginx</strong> functions as a reverse proxy and load balancer.</p>
-            <p class="lead">🚢 Deployed on a <strong>DigitalOcean Droplet</strong> (Ubuntu-based VM).</p>
-            <p class="lead">💻 <strong>Gunicorn</strong> acts as the WSGI HTTP server.</p>
-            <p class="lead">📋 Secured with an <strong>HTTPS certificate</strong>.</p>
-            <p class="lead">🏭 CI/CD is managed through <strong>GitHub Actions</strong>.</p>
+      <div class="jumbotron p-4 bg-white">
+        <div class="mx-auto" style="width : 600px;">
+          <br />
+          <div class="ms-4">
+            <p class="lead">
+              ⚡ <strong>Django</strong> powers the backend API.
+            </p>
+            <p class="lead">
+              🤳 <strong>Webpack</strong> and <strong>Bootstrap</strong> handle the frontend.
+            </p>
+            <p class="lead">
+              💾 <strong>PostgreSQL</strong> serves as the SQL database.
+            </p>
+            <p class="lead">
+              🐋 <strong>Docker Compose</strong> streamlines both development and production.
+            </p>
+            <p class="lead">
+              📞 <strong>Nginx</strong> functions as a reverse proxy and load balancer.
+            </p>
+            <p class="lead">
+              🚢 Deployed on a <strong>DigitalOcean Droplet</strong> (Ubuntu-based VM).
+            </p>
+            <p class="lead">
+              💻 <strong>Gunicorn</strong> acts as the WSGI HTTP server.
+            </p>
+            <p class="lead">
+              📋 Secured with an <strong>HTTPS certificate</strong>.
+            </p>
+            <p class="lead">
+              🏭 CI/CD is managed through <strong>GitHub Actions</strong>.
+            </p>
+          </div>
         </div>
-            </div>
-        </div>
+      </div>
     </div>
-    </div>
-
+  </div>
 </header>
-<hr class="my-4">
-
+<hr class="my-4" />
 <section class="container">
-    <div style="text-align: right; margin: 20px 0;">
-
-        <a href="{% url 'post_new' %}" title="New Post" class="top-menu"><i class="fas fa-edit"></i>Write a new post</a>
-
-    </div>
-    <div class="row row-cols-1 row-cols-md-3">
-        {% for post in posts %}
-            <div class="col mb-4">
-                <div class="block h-100 bg-white">
-                    <div class="block-body bg-white">
-                        <h3 class="block-title text-center">
-                            <a href="{% url 'blog-detail' post.slug %}">{{ post.title }}</a></h3>
-                            {% if post.image %}
-                            <img style="height: 200px; width: 100%; display: block;" src="{{ post.image.url }}" class="block-img-top" alt="...">
-                            {% else %}
-                                <!-- Optional: Display a placeholder image or message -->
-                            
-                            {% endif %}
-
-                            <p class="block-text text-center p-3">{{ post.overview }}</p>
-                            <p>{{ post.body|truncatechars:200}}</p>
-
-                    </div>
-                    <div class="block-footer text-center">
-                        <small class="text-muted">{{ post.created_on }}</small><br />
-                        {% for category in post.categories.all %}
-                                <span class="p-2">
-                                    <a href="{% url 'categories' category.slug %}">
-                                        #{{ category.title }}
-                                    </a>
-                                </span>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+  <div style="text-align: right; margin: 20px 0;">
+    <a href="{% url 'post_new' %}" title="New Post" class="top-menu"><i class="fas fa-edit"></i>Write a new post</a>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for post in posts %}
+      <div class="col mb-4">
+        <div class="block h-100 bg-white">
+          <div class="block-body bg-white">
+            <h3 class="block-title text-center">
+              <a href="{% url 'blog-detail' post.slug %}">{{ post.title }}</a>
+            </h3>
+            {% if post.image %}
+              <img style="height: 200px;
+                          width: 100%;
+                          display: block"
+                   src="{{ post.image.url }}"
+                   class="block-img-top"
+                   alt="..." />
+            {% else %}
+              <!-- Optional: Display a placeholder image or message -->
+            {% endif %}
+            <p class="block-text text-center p-3">{{ post.overview }}</p>
+            <p>{{ post.body|truncatechars:200 }}</p>
+          </div>
+          <div class="block-footer text-center">
+            <small class="text-muted">{{ post.created_on }}</small>
+            <br />
+            {% for category in post.categories.all %}
+              <span class="p-2">
+                <a href="{% url 'categories' category.slug %}">#{{ category.title }}</a>
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </section>
 {% endblock content %}

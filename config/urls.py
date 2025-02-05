@@ -24,7 +24,7 @@ from physhik.blog.views import (
 
 urlpatterns = [
     path("", BlogListView.as_view(), name="home"),
-    path("drafts/", DraftListView.as_view(), name="drafts"),    
+    path("drafts/", DraftListView.as_view(), name="drafts"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -37,12 +37,13 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("post/<slug:slug>/", BlogDetailView.as_view(), name="blog-detail"),
-    path("category/<slug:category>/", blog_category, name='categories'),
+    path("category/<slug:category>/", blog_category, name="categories"),
     path("project/", ProjectListView.as_view(), name="project"),
     path("project/<slug:slug>", ProjectDetailView.as_view(), name="project-details"),
     path("contact/", ContactFormView.as_view(), name="contact"),
     path("post/<slug:slug>/edit/", PostUpdateView.as_view(), name="post_edit"),
-    path("new/", PostCreateView.as_view(), name="post_new"),] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("new/", PostCreateView.as_view(), name="post_new"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development

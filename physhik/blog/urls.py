@@ -1,2 +1,2 @@
 app_name = "blog"
-urlpatterns = [ ]
+urlpatterns = []

@@ -1,39 +1,39 @@
 {% extends "base.html" %}
-{% load static humanize i18n %}
-<title>{% block title %}Project: {{ project.title }} | Blog{% endblock title %}</title>
-{% block content %}
-<section class="container py-5">
-	<h1 class="text-center mb-4 text-dark">
-        Project for {{ project.title }}
-    </h1>
-	<div class="block mb-4 bg-light">
-		{% if project.image %}
 
-		<img src="{{ project.image.url }}" class="block-img-top py-3 img-fluid" style="height:40vh; width: 100%; display: block" alt="...">
-		{% endif %}
-		<div class="card-body bg-white">
-			<h2 class="card-title text-center">{{ project.title }}</h2>
-			<div class="text-center">
-				<span class="card-text">
-                    <a href="{{ project.live_site }}">
-                        View Site
-                    </a>
-                </span>
-				<span class="card-text">
-                    <a href="{{ project.github }}">
-                        GitHub
-                    </a>
-                </span>
-			</div>
-			<div class="text-center py-2 mt-2">
-				<h2 class="card-title text-center">
-                Project Details
-                </h2>
-				<p class="card-text">
-                    {{ project.description }}
-                </p>
-			</div>
-		</div>
-	</div>
-</section>
+{% load static humanize i18n %}
+
+<title>
+  {% block title %}
+    Project: {{ project.title }} | Blog
+  {% endblock title %}
+</title>
+{% block content %}
+  <section class="container py-5">
+    <h1 class="text-center mb-4 text-dark">Project for {{ project.title }}</h1>
+    <div class="block mb-4 bg-light">
+      {% if project.image %}
+        <img src="{{ project.image.url }}"
+             class="block-img-top py-3 img-fluid"
+             style="height:40vh;
+                    width: 100%;
+                    display: block"
+             alt="..." />
+      {% endif %}
+      <div class="card-body bg-white">
+        <h2 class="card-title text-center">{{ project.title }}</h2>
+        <div class="text-center">
+          <span class="card-text">
+            <a href="{{ project.live_site }}">View Site</a>
+          </span>
+          <span class="card-text">
+            <a href="{{ project.github }}">GitHub</a>
+          </span>
+        </div>
+        <div class="text-center py-2 mt-2">
+          <h2 class="card-title text-center">Project Details</h2>
+          <p class="card-text">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock content %}

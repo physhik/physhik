@@ -1,54 +1,50 @@
 {% extends "base.html" %}
+
 {% load static humanize i18n %}
-<title>{% block title %}Projects | Blog{% endblock title %}</title>
+
+<title>
+  {% block title %}
+    Projects | Blog
+  {% endblock title %}
+</title>
 {% block content %}
-<section class="container py-4">
+  <section class="container py-4">
     <header class="container text-center">
-	    <h1 class="mb-4">
-        Most recent works
-        </h1>
-        <img src="{% static 'images/projects.png' %}" class="mx-auto py-3 img-fluid w-25" alt="...">
+      <h1 class="mb-4">Most recent works</h1>
+      <img src="{% static 'images/projects.png' %}"
+           class="mx-auto py-3 img-fluid w-25"
+           alt="..." />
     </header>
-
     <div style="text-align: right; margin: 20px 0;">
-        <hr class="my-4">
-
-		<a href="{% url 'post_new' %}" title="New Post" class="top-menu"><i class="fas fa-edit"></i>Write a new post</a>
-
-	</div>
-	{% for project in projects %}
-	<div class="card mb-4 bg-light">
-		{% if project.image %}
-		<img src="{{ project.image.url }}" class="mx-3 py-3 img-fluid" style="height:40vh;" alt="...">
-		{% endif %}
-		<div class="card-body bg-">
-			<h2 class="card-title text-center">
-				<a href="{% url 'project-details' project.slug %}">
-					{{ project.title }}
-				</a>
-			</h2>
-			<div class="text-center">
-				<span class="card-text">
-                    <a href="{{ project.live_site }}">
-                        View Site
-                    </a>
-                </span>
-				<span class="card-text">
-                    <a href="{{ project.github }}">
-                        GitHub
-                    </a>
-                </span>
-			</div>
-			<div class="text-center py-2 mt-2">
-				<h2 class="card-title text-center">
-                Project Details
-                </h2>
-				<p class="card-text">
-					{{ project.description }}
-                </p>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-</section>
+      <hr class="my-4" />
+      <a href="{% url 'post_new' %}" title="New Post" class="top-menu"><i class="fas fa-edit"></i>Write a new post</a>
+    </div>
+    {% for project in projects %}
+      <div class="card mb-4 bg-light">
+        {% if project.image %}
+          <img src="{{ project.image.url }}"
+               class="mx-3 py-3 img-fluid"
+               style="height:40vh"
+               alt="..." />
+        {% endif %}
+        <div class="card-body bg-">
+          <h2 class="card-title text-center">
+            <a href="{% url 'project-details' project.slug %}">{{ project.title }}</a>
+          </h2>
+          <div class="text-center">
+            <span class="card-text">
+              <a href="{{ project.live_site }}">View Site</a>
+            </span>
+            <span class="card-text">
+              <a href="{{ project.github }}">GitHub</a>
+            </span>
+          </div>
+          <div class="text-center py-2 mt-2">
+            <h2 class="card-title text-center">Project Details</h2>
+            <p class="card-text">{{ project.description }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
 {% endblock content %}

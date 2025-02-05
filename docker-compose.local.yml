@@ -1,7 +1,6 @@
 volumes:
   physhik_local_postgres_data: {}
   physhik_local_postgres_data_backups: {}
-  
 
 services:
   django:
