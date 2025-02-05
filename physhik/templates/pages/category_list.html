@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static humanize i18n %}
+<title>{% block title %}Category: {{ category.title }} | Blog{% endblock title %}</title>
+{% block content %}
+<section class="container">
+	<article>
+	  <h1 class="text-center mt-5 mb-5 text-dark">Category: {{ category | title }}</h1>
+	  <div class="row row-cols-1 row-cols-md-3">
+	    {% for post in posts %}
+	    <div class="col mb-4 text-center">
+	      <div class="card h-100 bg-light">
+			{% if post.image %}
+	        <img src="{{ post.image.url }}" style="height: 200px; width: 100%; display: block;" class="card-img-top"
+	          alt="...">
+			{% endif %}
+	        <div class="card-body bg-white">
+	          <h3 class="card-title"><a href="{% url 'blog-detail' post.slug %}">{{ post.title }}</a></h3>
+	          {% for category in post.categories.all %}
+	          <span class="p-1"><a href="{% url 'categories' category.slug %}">#{{ category.title }}</a></span>
+	          {% endfor %}
+	          <p class="card-text p-2">{{ post.overview }}</span>
+	        </div>
+	        <div class="card-footer">
+	          <small class="text-muted">Published on: {{ post.created_on }}</small>
+	        </div>
+	      </div>
+	    </div>
+	    {% endfor %}
+	  </div>
+	</article>
+</section>
+{% endblock content %}

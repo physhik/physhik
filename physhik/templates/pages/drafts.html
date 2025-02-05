@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static humanize i18n %}
+<title>{% block title %}Drafts | Blog{% endblock title %}</title>
+{% block content %}
+<section class="container py-4">
+    <header class="container text-center">
+	    <h1 class="mb-4">
+        Drafts
+        </h1>
+        <img src="{% static 'images/drafts.png' %}" class="mx-auto py-3 img-fluid w-25" alt="...">
+    </header>
+
+    <div style="text-align: right; margin: 20px 0;">
+        <hr class="my-4">
+
+		<a href="{% url 'post_new' %}" title="New Post" class="top-menu"><i class="fas fa-edit"></i>Write a new post</a>
+
+	</div>
+    {% if drafts %}
+      
+        {% for draft in drafts %}
+          
+            <h2><a href="{% url 'post_edit' draft.slug %}">{{ draft.title }}</a></h2>
+            <small>(Created: {{ draft.created_on }})</small>
+            <p>{{ draft.body|truncatechars:200 }}</p>
+
+        {% endfor %}
+      
+    {% else %}
+      <p>No drafts found.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

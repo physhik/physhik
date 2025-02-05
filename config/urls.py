@@ -10,9 +10,21 @@ from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
+from physhik.blog.views import (
+    BlogListView,
+    BlogDetailView,
+    blog_category,
+    ContactFormView,
+    ProjectListView,
+    ProjectDetailView,
+    PostCreateView,
+    PostUpdateView,
+    DraftListView,
+)
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", BlogListView.as_view(), name="home"),
+    path("drafts/", DraftListView.as_view(), name="drafts"),    
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -24,10 +36,14 @@ urlpatterns = [
     path("users/", include("physhik.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    # ...
-    # Media files
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
-]
+    path("post/<slug:slug>/", BlogDetailView.as_view(), name="blog-detail"),
+    path("category/<slug:category>/", blog_category, name='categories'),
+    path("project/", ProjectListView.as_view(), name="project"),
+    path("project/<slug:slug>", ProjectDetailView.as_view(), name="project-details"),
+    path("contact/", ContactFormView.as_view(), name="contact"),
+    path("post/<slug:slug>/edit/", PostUpdateView.as_view(), name="post_edit"),
+    path("new/", PostCreateView.as_view(), name="post_new"),] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
     urlpatterns += staticfiles_urlpatterns()

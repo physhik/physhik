@@ -1,6 +1,6 @@
 
-{% load static i18n %}
-    {% load render_bundle from webpack_loader %}
+{% load static humanize i18n %}
+{% load render_bundle from webpack_loader %}
 
   <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -115,14 +115,17 @@
 
                           
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">Drafts</a>
+              <a class="nav-link" href="{% url 'drafts' %}">Drafts</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">Write New Post</a>
+              <a class="nav-link" href="{% url 'project' %}">Projects</a>
             </li>
+            {% endif %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">Post List</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contacts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -176,6 +179,10 @@
   <!-- /container -->
   {% block modal %}
   {% endblock modal %}
+
+
+  
+  {% include 'partials/_footer.html' %}
   {% block inline_javascript %}
     {% comment %}
     Script tags with only code, no src (defer by default). To run
@@ -186,6 +193,7 @@
       });
     </script>
     {% endcomment %}
+    <script src="{% static 'js/project.js' %}"></script>
   {% endblock inline_javascript %}
 </body>
 </html>

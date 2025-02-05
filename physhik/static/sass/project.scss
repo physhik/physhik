@@ -34,3 +34,17 @@ $red: #b94a48;
   border-color: $dark-pink;
   color: $red;
 }
+
+
+a {
+  color: inherit; /* Inherits the text color from its parent */
+  text-decoration: none; /* Removes the underline */
+}
+
+a:hover {
+  color: lightblue; /* Changes the color of visited links */
+}
+
+a:visited {
+  color: lightcoral; /* Changes the color of visited links */
+}

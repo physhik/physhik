@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static humanize i18n %}
+{% load crispy_forms_tags %}
+<title>{% block title %}Contact | Blog {% endblock title %}</title>
+{% block content %}
+<section class="h-100 my-4 pb-5">
+	<header class="container text-center">
+		<h1 class="mt-5 text-dark"> Send me a message!</h1>
+		<img src="{% static 'images/cole-message-sent.png' %}" class="mx-auto py-3 img-fluid rounded-circle w-25" alt="...">
+	</header>
+	<div class="py-5 mb-1">
+    {% if messages %}
+
+    {% else %}
+		<div>
+			{% csrf_token %}
+			{% crispy form %}
+		</div>
+		{% endif %}
+	</div>
+</section>
+{% endblock content %}
