@@ -22,36 +22,42 @@
     </div>
     <div class="container mt-2">
       <div class="jumbotron p-4 bg-white">
-        <div class="mx-auto" style="width : 600px;">
+        {% if "Mobile" in request.META.HTTP_USER_AGENT %}
+        <div class="mx-auto" style="width : 300px;">
+            {% else %}
+            <div class="mx-auto" style="width : 600px;">
+            {% endif %}
           <br />
-          <div class="ms-4">
-            <p class="lead">
+  
+
+
+            <p class="lead"><small>
               ⚡ <strong>Django</strong> powers the backend API.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               🤳 <strong>Webpack</strong> and <strong>Bootstrap</strong> handle the frontend.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               💾 <strong>PostgreSQL</strong> serves as the SQL database.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               🐋 <strong>Docker Compose</strong> streamlines both development and production.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               📞 <strong>Nginx</strong> functions as a reverse proxy and load balancer.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               🚢 Deployed on a <strong>DigitalOcean Droplet</strong> (Ubuntu-based VM).
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               💻 <strong>Gunicorn</strong> acts as the WSGI HTTP server.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               📋 Secured with an <strong>HTTPS certificate</strong>.
-            </p>
-            <p class="lead">
+            </small></p>
+            <p class="lead"><small>
               🏭 CI/CD is managed through <strong>GitHub Actions</strong>.
-            </p>
+            </small></p>
           </div>
         </div>
       </div>
