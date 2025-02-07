@@ -15,6 +15,7 @@ from .models import Contact
 from .models import Post
 from .models import Project
 
+import random
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -117,3 +118,25 @@ class ContactFormView(FormView):
 
 class AboutView(TemplateView):
     template_name = "pages/about.html"
+
+
+
+def factoring_problems(request):
+    problems = []
+    
+    for a in range(-9, 10):
+        for b in range(-9, 10):
+            if a*b > 0 and a+b > 0:
+                expression = f"x^2 + {a + b}x + {a * b}"
+                problems.append(expression)
+            elif a*b > 0 and a+b < 0:
+                expression = f"x^2  {a + b}x + {a * b}"
+                problems.append(expression)
+            elif a*b < 0 and a+b > 0:
+                expression = f"x^2 + {a + b}x  {a * b}"
+                problems.append(expression)
+            elif a*b < 0 and a+b < 0:
+                expression = f"x^2  {a + b}x  {a * b}"
+                problems.append(expression)               
+    random.shuffle(problems)
+    return render(request, "pages/problems.html", {"problems": problems})

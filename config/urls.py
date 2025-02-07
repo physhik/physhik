@@ -20,6 +20,7 @@ from physhik.blog.views import (
     PostCreateView,
     PostUpdateView,
     DraftListView,
+    factoring_problems,
 )
 
 urlpatterns = [
@@ -41,6 +42,7 @@ urlpatterns = [
     path("project/", ProjectListView.as_view(), name="project"),
     path("project/<slug:slug>", ProjectDetailView.as_view(), name="project-details"),
     path("contact/", ContactFormView.as_view(), name="contact"),
+    path('problems/', factoring_problems, name='factoring_problems'),
     path("post/<slug:slug>/edit/", PostUpdateView.as_view(), name="post_edit"),
     path("new/", PostCreateView.as_view(), name="post_new"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
