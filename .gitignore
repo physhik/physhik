@@ -46,6 +46,9 @@ coverage.xml
 *.cover
 .hypothesis/
 
+# Email test (mailgun, forwardemail)
+email_test.py
+
 # Translations
 *.mo
 *.pot
@@ -276,3 +279,4 @@ physhik/static/webpack_bundles/
 webpack-stats.json
 .env
 .envs/*
+
